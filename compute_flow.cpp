@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
   dirp = opendir(vid_path.c_str());
   if (dirp != NULL) {
     while ((entry = readdir(dirp)) != NULL) {
-      if (entry->d_type == DT_REG) {
+      if (entry->d_type == DT_REG || entry->d_type == DT_LNK) {
         totalvideos++;
       }
     }
@@ -149,6 +149,7 @@ int main(int argc, char *argv[]) {
   }
 #endif
 
+  std::cout << "Cuda enabled devices: " << cuda::getCudaEnabledDeviceCount() << std::endl;
   cv::cuda::setDevice(gpuID);
   Mat capture_frame, capture_image, prev_image, capture_gray, prev_gray,
       human_mask;
