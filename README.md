@@ -1,6 +1,6 @@
 GPU based optical flow extraction in OpenCV.
 ====================
-The [original code](https://github.com/feichtenhofer/gpu_flow) is ported to Opencv 3.4.4 with some (or more) code changes like code refactoring, formatting, cleanup, use of `clock_gettime()` instead of `gettimeofday()` etc. Please see the code diff for more information.
+The [original code](https://github.com/feichtenhofer/gpu_flow) is ported to Opencv 3.4.4 with some (or more) code changes. Please see the code diff for more information.
 
 ### Features:
 * OpenCV wrapper for Real-Time optical flow extraction on GPU
