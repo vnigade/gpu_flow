@@ -335,15 +335,17 @@ int main(int argc, char *argv[]) {
           max_v_f = max;
         }
 
-        // Safe in-place conversion
-        convertFlowToImage(imgU, imgU, min_u_f, max_u_f);
-        convertFlowToImage(imgV, imgV, min_v_f, max_v_f);
+        // Not a in-place safe conversion
+        cv::Mat imgX(imgU.rows, imgU.cols, CV_8UC1);
+        cv::Mat imgY(imgV.rows, imgV.cols, CV_8UC1);
+        convertFlowToImage(imgU, imgX, min_u_f, max_u_f);
+        convertFlowToImage(imgV, imgY, min_v_f, max_v_f);
 
         // Output OF in grey image
         std::ostringstream strStream;
         strStream << "/" << FRAME_FILE_PREFIX << nframes << FRAME_FILE_EXT;
-        imwrite(outfile_u + strStream.str(), imgU);
-        imwrite(outfile_v + strStream.str(), imgU);
+        imwrite(outfile_u + strStream.str(), imgX);
+        imwrite(outfile_v + strStream.str(), imgY);
       }
 
       frame1_rgb.copyTo(frame0_rgb);
